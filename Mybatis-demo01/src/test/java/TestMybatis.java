@@ -1,5 +1,6 @@
 import com.qiu.mapper.UserMapper;
 import com.qiu.pojo.User;
+import com.qiu.util.MybatisUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,13 +14,7 @@ import java.util.List;
 public class TestMybatis {
     @Test
     public void testMybatis() throws IOException {
-        String resource = "mybatis-config.xml";
-        InputStream inputStream = Resources.getResourceAsStream(resource);
-
-
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-        SqlSession sqlSession = sqlSessionFactory.openSession(true);
-
+        SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> userList = mapper.selectUser();
 

@@ -15,6 +15,10 @@
     <typeAliases>
         <package name="com.qiu.pojo"/>
     </typeAliases>
+<!--    指定类名-->
+<!--    <typeAliases>-->
+<!--        <typeAlias type="com.qiu.pojo.User" alias="_User"/> &lt;!&ndash; <select id="selectUser" resultType="_User">&ndash;&gt;-->
+<!--    </typeAliases>-->
 
     <!--environments 可配置多个环境-->
     <environments default="development">
@@ -33,8 +37,10 @@
 
     <!--每一个Mapper.xml都需要在MyBatis核心配置文件中注册！！！-->
     <mappers>
-        <mapper class="com.qiu.mapper.UserMapper"/>
-        <!--<mapper resource="com/melodyhub/mapper/UserMapper.xml"/>-->
+<!--        三种任意-->
+<!--        <mapper class="com.qiu.mapper.UserMapper"/>-->
+<!--        <mapper resource="com/qiu/mapper/UserMapper.xml"/>-->
+        <package name="com.qiu.mapper" />
     </mappers>
 
 </configuration>
