@@ -4,8 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qiu.mapper.UserMapper">
-    <!-- 绑定接口 -->
-    <select id="selectUser" resultType="com.qiu.pojo.User">
+    <!-- 批量查询接口 -->
+    <select id="selectUsers" resultType="com.qiu.pojo.User">
         select * from mybatis.user;
+    </select>
+
+    <!-- 查询接口 -->
+    <select id="selectUser" parameterType="int" resultType="com.qiu.pojo.User">
+        select * from mybatis.user where id=#{id};
+    </select>
+<!--    &lt;!&ndash; del接口 &ndash;&gt;-->
+<!--    <select id="delUser" parameterType="int" >-->
+<!--        delete from mybatis.user where id=#{id} ;-->
+<!--    </select>-->
+    <!-- add接口 -->
+    <select id="addUser" parameterType="User" >
+        insert into mybatis.user values(#{id},#{name},#{pwd})
+    </select>
+    <!-- update接口 -->
+    <select id="updateUser" parameterType="User" >
+        update mybatis.user set name=#{name} where id=#{id}
     </select>
 </mapper>
