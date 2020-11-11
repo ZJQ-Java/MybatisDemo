@@ -10,7 +10,7 @@
     <!--<settings>
         <setting name="logImpl" value="STDOUT_LOGGING" />
     </settings>-->
-
+    <properties resource="db.properties"/>
     <!--可以给实体类起别名 -->
     <typeAliases>
         <package name="com.qiu.pojo"/>
@@ -23,11 +23,10 @@
             <!--事务管理-->
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <!--<property name="driver" value="com.mysql.jdbc.Driver"/>-->
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=GMT%2B8&amp;autoReconnect=true"/>
-                <property name="username" value="root"/>
-                <property name="password" value="zjq123"/>
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
             </dataSource>
         </environment>
     </environments>
