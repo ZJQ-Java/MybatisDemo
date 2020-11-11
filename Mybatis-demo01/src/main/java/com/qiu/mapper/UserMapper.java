@@ -10,10 +10,10 @@ public interface UserMapper {
 
     public User selectUser(int id);
 
-    public void addUser(User user);
+    public int addUser(User user);
 
-    public void updateUser(User user);
+    public int updateUser(User user);
 
     @Delete(value = " delete from mybatis.user where id=#{id} ")
-    public void delUser(int id);
+    public int delUser(int id);
 }

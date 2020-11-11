@@ -29,7 +29,7 @@ public class TestMybatis {
     public void testAddMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        mapper.addUser(new User(5,"i","pw"));
+        int i = mapper.addUser(new User(5, "i", "pw"));
         User user = mapper.selectUser(5);
         System.out.println(user);
     }
@@ -38,7 +38,7 @@ public class TestMybatis {
     public void testDelMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        mapper.delUser(4);
+        int i = mapper.delUser(4);
         User user = mapper.selectUser(4);
         System.out.println(user == null);
     }
@@ -49,7 +49,7 @@ public class TestMybatis {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = mapper.selectUser(4);
         System.out.println(user);
-        mapper.updateUser(new User(4,"close","update"));
+        int i = mapper.updateUser(new User(4, "close", "update"));
         sqlSession.close();
         sqlSession = MybatisUtil.getSession(true);
         user = sqlSession.getMapper(UserMapper.class).selectUser(4);
