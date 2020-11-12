@@ -1,5 +1,6 @@
 package com.qiu.pojo;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -50,8 +51,8 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", pwd='" + pwd + '\'' +
-                ", createTime=" + createTime +
-                ", modifyTime=" + modifyTime +
+                ", createTime=" + DateFormat.getDateTimeInstance().format(createTime) +
+                ", modifyTime=" + DateFormat.getDateTimeInstance().format(modifyTime) +
                 '}';
     }
 
