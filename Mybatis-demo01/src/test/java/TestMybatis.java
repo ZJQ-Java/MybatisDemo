@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 public class TestMybatis {
@@ -18,6 +19,7 @@ public class TestMybatis {
             System.out.println(user);
         }
     }
+
     @Test
     public void testUserMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
@@ -25,12 +27,14 @@ public class TestMybatis {
         User userList = mapper.selectUser(1);
         System.out.println(userList);
     }
+
     @Test
     public void testAddMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        int i = mapper.addUser(new User(5, "i", "pw"));
-        User user = mapper.selectUser(5);
+        int i = mapper.addUser(new User(4, "i", "pw", new Date(), new Date()));
+        System.out.println(i);
+        User user = mapper.selectUser(4);
         System.out.println(user);
     }
 
@@ -49,9 +53,14 @@ public class TestMybatis {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = mapper.selectUser(4);
         System.out.println(user);
-        int i = mapper.updateUser(new User(4, "close", "update"));
-        sqlSession.close();
-        sqlSession = MybatisUtil.getSession(true);
+        int i = mapper.updateUser(new User(4, "close", "update", new Date(), new Date()));
+        /*
+        1.不使用缓存flushCache="true"
+        2.sqlSession.commit()
+        3.new SqlSession
+         */
+
+        System.out.println(i);
         user = sqlSession.getMapper(UserMapper.class).selectUser(4);
         System.out.println(user);
     }

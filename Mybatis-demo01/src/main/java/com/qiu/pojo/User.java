@@ -35,6 +35,14 @@ public class User {
         this.pwd = pwd;
     }
 
+    public User(int id, String name, String pwd, Date createTime, Date modifyTime) {
+
+        this.id = id;
+        this.name = name;
+        this.pwd = pwd;
+        this.createTime = createTime;
+        this.modifyTime = modifyTime;
+    }
 
     @Override
     public String toString() {

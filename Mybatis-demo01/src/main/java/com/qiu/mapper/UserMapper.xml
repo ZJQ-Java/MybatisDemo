@@ -23,7 +23,7 @@
     </select>
 
     <!-- 查询接口 -->
-    <select id="selectUser" parameterType="int" resultType="com.qiu.pojo.User">
+    <select id="selectUser" parameterType="int" resultMap="BaseResultMap">
         select * from mybatis.user where id=#{id};
     </select>
     <!--    &lt;!&ndash; del接口 &ndash;&gt;-->
@@ -31,11 +31,11 @@
     <!--        delete from mybatis.user where id=#{id} ;-->
     <!--    </select>-->
     <!-- add接口 -->
-    <insert id="addUser" parameterType="User">
-        insert into mybatis.user values(#{id},#{name},#{pwd})
+    <insert id="addUser" parameterType="User" useGeneratedKeys="true">  /*useGeneratedKeys="true"使用自增id*/
+        insert into mybatis.user values(#{id},#{name},#{pwd},#{createTime},#{modifyTime})
     </insert>
     <!-- update接口 -->
-    <update id="updateUser" parameterType="User">
-        update mybatis.user set name=#{name} where id=#{id}
+    <update id="updateUser" parameterType="User" flushCache="true">
+        update mybatis.user set name=#{name}, pwd=#{pwd} ,create_time=#{createTime}, modify_time=#{modifyTime} where id=#{id}
     </update>
 </mapper>
