@@ -55,7 +55,7 @@ public class TestMybatis {
     public void testUserForeachMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        List<User> userList = mapper.selectUserForeach(Arrays.asList());
+        List<User> userList = mapper.selectUserForeach(Arrays.asList(1,4));
         System.out.println(userList);
     }
 
