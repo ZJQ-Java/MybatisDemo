@@ -26,6 +26,16 @@
     <select id="selectUser" parameterType="int" resultMap="BaseResultMap">
         select * from mybatis.user where id=#{id};
     </select>
+
+    <!-- 查询接口ByMap -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select * from mybatis.user where id=#{id} and name=#{name};
+    </select>
+
+    <!-- 查询接口ByMap -->
+    <select id="selectUserLike" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from mybatis.user where  name like '%'  #{name} '%';
+    </select>
     <!--    &lt;!&ndash; del接口 &ndash;&gt;-->
     <!--    <select id="delUser" parameterType="int" >-->
     <!--        delete from mybatis.user where id=#{id} ;-->

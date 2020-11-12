@@ -1,9 +1,11 @@
 package com.qiu.pojo;
 
+import org.apache.ibatis.type.Alias;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+//@Alias("User")
 public class User {
     private int    id;
     private String name;

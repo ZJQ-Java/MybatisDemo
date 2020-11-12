@@ -2,22 +2,47 @@ import com.qiu.mapper.UserMapper;
 import com.qiu.pojo.User;
 import com.qiu.util.MybatisUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TestMybatis {
+    static Logger logger = Logger.getLogger(TestMybatis.class);
     @Test
     public void testUsersMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> userList = mapper.selectUsers();
-
+        logger.info("logger info ");
+        logger.debug("logger debug ");
+        logger.error("logger error ");
         for (User user : userList) {
             System.out.println(user);
         }
+    }
+
+    @Test
+    public void testUserByMapMybatis() throws IOException {
+        SqlSession sqlSession = MybatisUtil.getSession(true);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Map<String,Object> map = new HashMap<>();
+        map.put("id",1);
+        map.put("name","z");
+        User userList = mapper.selectByMap(map);
+        System.out.println(userList);
+    }
+
+    @Test
+    public void testUserLikeMybatis() throws IOException {
+        SqlSession sqlSession = MybatisUtil.getSession(true);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> userList = mapper.selectUserLike("g");
+        System.out.println(userList);
     }
 
     @Test
