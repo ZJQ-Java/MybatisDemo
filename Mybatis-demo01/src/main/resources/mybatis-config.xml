@@ -48,9 +48,10 @@
     <!--每一个Mapper.xml都需要在MyBatis核心配置文件中注册！！！-->
     <mappers>
         <!--        三种任意-->
-        <mapper class="com.qiu.mapper.UserMapper"/>
-        <!--        <mapper resource="com/qiu/mapper/UserMapper.xml"/>-->
+        <!--        <mapper class="com.qiu.mapper.UserMapper"/>-->
         <!--        <package name="com.qiu.mapper" />-->
+        <!--        不需要mapper接口和配置文件同名-->
+        <mapper resource="com/qiu/mapper/UserMapper.xml"/>
     </mappers>
 
 </configuration>

@@ -6,10 +6,7 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TestMybatis {
     static Logger logger = Logger.getLogger(TestMybatis.class);
@@ -42,6 +39,23 @@ public class TestMybatis {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         List<User> userList = mapper.selectUserLike("g");
+        System.out.println(userList);
+    }
+
+
+    @Test
+    public void testUserIfMybatis() throws IOException {
+        SqlSession sqlSession = MybatisUtil.getSession(true);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> userList = mapper.selectUserIf("close","update");
+        System.out.println(userList);
+    }
+
+    @Test
+    public void testUserForeachMybatis() throws IOException {
+        SqlSession sqlSession = MybatisUtil.getSession(true);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> userList = mapper.selectUserForeach(Arrays.asList());
         System.out.println(userList);
     }
 

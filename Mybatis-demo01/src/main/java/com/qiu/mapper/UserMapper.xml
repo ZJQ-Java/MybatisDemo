@@ -32,9 +32,28 @@
         select * from mybatis.user where id=#{id} and name=#{name};
     </select>
 
-    <!-- 查询接口ByMap -->
-    <select id="selectUserLike" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!-- 查询接口like -->
+    <select id="selectUserLike" parameterType="String" resultMap="BaseResultMap">
         select * from mybatis.user where  name like '%'  #{name} '%';
+    </select>
+
+    <!-- 查询接口like -->
+    <select id="selectUserIf" parameterType="String" resultMap="BaseResultMap">
+        select * from mybatis.user where  name = #{name}
+        <if test="pwd!= null">
+           and  pwd=#{pwd}
+        </if>
+    </select>
+
+    <!-- 查询接口selectUserForeach -->
+    <select id="selectUserForeach" parameterType="String" resultMap="BaseResultMap">
+        select * from mybatis.user
+         <where>
+             id in
+             <foreach collection="list" item="ids" separator="," open="(" close=")">
+                 #{ids}
+             </foreach>
+         </where>
     </select>
     <!--    &lt;!&ndash; del接口 &ndash;&gt;-->
     <!--    <select id="delUser" parameterType="int" >-->

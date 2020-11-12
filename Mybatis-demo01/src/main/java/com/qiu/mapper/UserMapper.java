@@ -22,4 +22,8 @@ public interface UserMapper {
     public User selectByMap(Map<String ,Object> map);
 
     public List<User> selectUserLike(@Param("name") String _name);
+
+    public List<User> selectUserIf(@Param("name") String _name,@Param("pwd") String pwd);
+
+    public List<User> selectUserForeach(List<Integer> ids);
 }
