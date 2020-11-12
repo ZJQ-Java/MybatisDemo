@@ -23,7 +23,10 @@ public class MybatisUtil {
 
     // 获得会话
     public static SqlSession getSession() throws IOException {
+//        SqlSession sqlSession = getSqlSessionFactory().openSession();
+//        sqlSession.getConfiguration().getTypeHandlerRegistry().getTypeHandler()
         return getSqlSessionFactory().openSession(true);
+
     }
 
     /**

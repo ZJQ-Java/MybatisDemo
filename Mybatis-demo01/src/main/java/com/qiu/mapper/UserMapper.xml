@@ -4,8 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.qiu.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.qiu.pojo.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="pwd" jdbcType="VARCHAR" property="pwd"/>
+        <!-- 不使用MyDateHandler-->
+        <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
+<!--        <result column="modify_time" jdbcType="VARCHAR" property="modifyTime"/>-->
+
+        <!-- 使用MyDateHandler-->
+        <result column="modify_time" typeHandler="com.qiu.util.MyDateHandler" property="modifyTime"/>
+    </resultMap>
+
+
     <!-- 批量查询接口 -->
-    <select id="selectUsers" resultType="com.qiu.pojo.User">
+    <select id="selectUsers" resultMap="BaseResultMap">
         select * from mybatis.user;
     </select>
 
@@ -13,16 +26,16 @@
     <select id="selectUser" parameterType="int" resultType="com.qiu.pojo.User">
         select * from mybatis.user where id=#{id};
     </select>
-<!--    &lt;!&ndash; del接口 &ndash;&gt;-->
-<!--    <select id="delUser" parameterType="int" >-->
-<!--        delete from mybatis.user where id=#{id} ;-->
-<!--    </select>-->
+    <!--    &lt;!&ndash; del接口 &ndash;&gt;-->
+    <!--    <select id="delUser" parameterType="int" >-->
+    <!--        delete from mybatis.user where id=#{id} ;-->
+    <!--    </select>-->
     <!-- add接口 -->
-    <insert id="addUser" parameterType="User" >
+    <insert id="addUser" parameterType="User">
         insert into mybatis.user values(#{id},#{name},#{pwd})
     </insert>
     <!-- update接口 -->
-    <update id="updateUser" parameterType="User" >
+    <update id="updateUser" parameterType="User">
         update mybatis.user set name=#{name} where id=#{id}
     </update>
 </mapper>
