@@ -48,7 +48,7 @@ public class TestMybatis {
     public void testUserIfMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        List<User> userList = mapper.selectUserIf("close", "update");
+        List<User> userList = mapper.selectUserIf("z", "z");
         System.out.println(userList);
     }
 

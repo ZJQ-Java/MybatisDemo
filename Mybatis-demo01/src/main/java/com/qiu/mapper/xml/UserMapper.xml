@@ -28,7 +28,7 @@
     </select>
 
     <!-- 查询接口choose when -->
-    <select id="selectUser" parameterType="Map" resultMap="BaseResultMap">
+    <!--<select id="selectUserWhen" parameterType="Map" resultMap="BaseResultMap">
         select * from mybatis.user
         <where>
             <choose>
@@ -44,7 +44,7 @@
             </choose>
         </where>
 
-    </select>
+    </select>-->
 
     <!-- 查询接口ByMap -->
     <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
@@ -56,12 +56,18 @@
         select * from mybatis.user where  name like '%'  #{name} '%';
     </select>
 
-    <!-- 查询接口if -->
-    <select id="selectUserIf" parameterType="String" resultMap="BaseResultMap">
-        select * from mybatis.user where name = #{name}
+    <sql id="sqlPWD">
         <if test="pwd!= null">
             and pwd=#{pwd}
         </if>
+    </sql>
+    <!-- 查询接口if -->
+    <select id="selectUserIf" parameterType="String" resultMap="BaseResultMap">
+        select * from mybatis.user where name = #{name}
+<!--        <if test="pwd!= null">-->
+<!--            and pwd=#{pwd}-->
+<!--        </if>-->
+        <include refid="sqlPWD"></include>
     </select>
 
     <!-- 查询接口selectUser where Foreach -->
@@ -91,12 +97,12 @@
         update mybatis.user set name=#{name}, pwd=#{pwd} ,create_time=#{createTime}, modify_time=#{modifyTime} where id=#{id}
     </update>
     <!--    set /where -->
-    <update id="updateUser" parameterType="User" flushCache="true">
+  <!--  <update id="updateUser1" parameterType="User" flushCache="true">
         update mybatis.user
         <set>
             <if test="id!=null">
                 id = #{id}
             </if>
         </set>
-    </update>
+    </update>-->
 </mapper>
