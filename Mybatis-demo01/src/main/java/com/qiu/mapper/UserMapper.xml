@@ -10,7 +10,7 @@
         <result column="pwd" jdbcType="VARCHAR" property="pwd"/>
         <!-- 不使用MyDateHandler-->
         <result column="create_time" jdbcType="VARCHAR" property="createTime"/>
-<!--        <result column="modify_time" jdbcType="VARCHAR" property="modifyTime"/>-->
+        <!--        <result column="modify_time" jdbcType="VARCHAR" property="modifyTime"/>-->
 
         <!-- 使用MyDateHandler-->
         <result column="modify_time" typeHandler="com.qiu.util.MyDateHandler" property="modifyTime"/>
@@ -39,21 +39,25 @@
 
     <!-- 查询接口like -->
     <select id="selectUserIf" parameterType="String" resultMap="BaseResultMap">
-        select * from mybatis.user where  name = #{name}
+        select * from mybatis.user where name = #{name}
         <if test="pwd!= null">
-           and  pwd=#{pwd}
+            and pwd=#{pwd}
         </if>
     </select>
 
     <!-- 查询接口selectUserForeach -->
     <select id="selectUserForeach" parameterType="String" resultMap="BaseResultMap">
         select * from mybatis.user
-         <where>
-             id in
-             <foreach collection="list" item="ids" separator="," open="(" close=")">
-                 #{ids}
-             </foreach>
-         </where>
+        <where>
+            id in
+            <foreach collection="list" item="ids" separator="," open="(" close=")">
+                #{ids}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="selectLimit" parameterType="Map" resultMap="BaseResultMap">
+        select * from mybatis.user limit #{limit} ,#{offset}
     </select>
     <!--    &lt;!&ndash; del接口 &ndash;&gt;-->
     <!--    <select id="delUser" parameterType="int" >-->

@@ -10,6 +10,7 @@ import java.util.*;
 
 public class TestMybatis {
     static Logger logger = Logger.getLogger(TestMybatis.class);
+
     @Test
     public void testUsersMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
@@ -27,9 +28,9 @@ public class TestMybatis {
     public void testUserByMapMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        Map<String,Object> map = new HashMap<>();
-        map.put("id",1);
-        map.put("name","z");
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", 1);
+        map.put("name", "z");
         User userList = mapper.selectByMap(map);
         System.out.println(userList);
     }
@@ -47,7 +48,7 @@ public class TestMybatis {
     public void testUserIfMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        List<User> userList = mapper.selectUserIf("close","update");
+        List<User> userList = mapper.selectUserIf("close", "update");
         System.out.println(userList);
     }
 
@@ -55,7 +56,18 @@ public class TestMybatis {
     public void testUserForeachMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        List<User> userList = mapper.selectUserForeach(Arrays.asList(1,4));
+        List<User> userList = mapper.selectUserForeach(Arrays.asList(1, 4));
+        System.out.println(userList);
+    }
+
+    @Test
+    public void testUserLimitMybatis() throws IOException {
+        SqlSession sqlSession = MybatisUtil.getSession(true);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("limit",1);
+        map.put("offset",2);
+        List<User> userList = mapper.selectLimit(map);
         System.out.println(userList);
     }
 

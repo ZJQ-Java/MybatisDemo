@@ -26,4 +26,6 @@ public interface UserMapper {
     public List<User> selectUserIf(@Param("name") String _name,@Param("pwd") String pwd);
 
     public List<User> selectUserForeach(List<Integer> ids);
+
+    public List<User> selectLimit(Map<String,Object> map);
 }
