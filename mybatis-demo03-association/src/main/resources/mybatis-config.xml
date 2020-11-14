@@ -51,8 +51,8 @@
         <!--        <mapper class="com.qiu.mapper.UserMapper"/>-->
         <!--        <package name="com.qiu.mapper" />-->
         <!--        不需要mapper接口和配置文件同名-->
-        <mapper resource="com/qiu/mapper/xml/StudentMapper.xml"/>
-        <mapper resource="com/qiu/mapper/xml/TeacherMapper.xml"/>
+        <mapper resource="com/qiu/mapper/StudentMapper.xml"/>
+        <mapper resource="com/qiu/mapper/TeacherMapper.xml"/>
     </mappers>
 
 </configuration>

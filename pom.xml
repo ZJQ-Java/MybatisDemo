@@ -11,6 +11,7 @@
     <modules>
         <module>Mybatis-demo01</module>
         <module>mybatis-demo02-association</module>
+        <module>mybatis-demo03-association</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
