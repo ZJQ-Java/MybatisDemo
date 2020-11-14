@@ -3,35 +3,5 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qiu.mapper.StudentMapper">
-    <!--    关联的嵌套 Select 查询-->
-    <resultMap id="studentResultMap" type="Student">
-        <result column="id" property="id"/>
-        <result column="name" property="name"/>
-        <association property="teacher" column="tid" javaType="Teacher" select="selectAllTeacher"/>
-    </resultMap>
-    <select id="getAllStudent" resultMap="studentResultMap">
-        select * from student;
-    </select>
 
-
-    <select id="selectAllTeacher" resultType="Teacher">
-        SELECT * FROM teacher WHERE ID = #{id}
-    </select>
-    <!--    关联的嵌套结果映射-->
-    <resultMap id="studentResultMap1" type="Student">
-        <id property="id" column="s_id"/>
-        <result property="name" column="s_name"/>
-        <association property="teacher" javaType="Teacher">
-            <id property="id" column="t_id"/>
-            <result property="name" column="t_name"/>
-        </association>
-    </resultMap>
-    <select id="selectStudentAssociation" resultMap="studentResultMap1">
-        select
-         s.id as s_id,
-         s.name as s_name,
-         t.id as t_id,
-         t.name as t_name
-         from student s inner  join teacher t on  s.tid = t.id
-    </select>
 </mapper>

@@ -4,5 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qiu.mapper.TeacherMapper">
 
-
+    <!--    关联的嵌套 Select 查询-->
+    <!--    关联的嵌套结果映射-->
+    <resultMap id="teacherMap" type="Teacher">
+        <result property="id" column="t_id"/>
+        <result property="name" column="t_name"/>
+<!--        <association property="teacher" javaType="Teacher">-->
+<!--            <id property="id" column="t_id"/>-->
+<!--            <result property="name" column="t_name"/>-->
+<!--        </association>-->
+        <collection property="students" ofType="Student">
+            <result property="id" column="s_id"/>
+            <result property="name" column="s_name"/>
+            <result property="tid" column="s_tid"/>
+        </collection>
+    </resultMap>
+    <select id="selectTeacherAssociation" resultMap="teacherMap">
+      select t.id t_id,t.name t_name,s.id s_id,s.name s_name,s.tid s_tid
+      from teacher t 
+      left join
+       student s 
+       on t.id=s.tid;
+    </select>
 </mapper>
