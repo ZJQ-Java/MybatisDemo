@@ -71,12 +71,13 @@
     </select>
 
     <!-- 查询接口selectUser where Foreach -->
+    <!--    item只是别名 collection 是集合对应的名字 list->list  map中对应的key-->
     <select id="selectUserForeach" parameterType="String" resultMap="BaseResultMap">
         select * from mybatis.user
         <where>
             id in
-            <foreach collection="list" item="ids" separator="," open="(" close=")">
-                #{ids}
+            <foreach collection="list" item="idss" separator="," open="(" close=")">
+                #{idss}
             </foreach>
         </where>
     </select>
@@ -93,7 +94,7 @@
         insert into mybatis.user values(#{id},#{name},#{pwd},#{createTime},#{modifyTime})
     </insert>
     <!-- update接口 -->
-    <update id="updateUser" parameterType="User" flushCache="true">
+    <update id="updateUser" parameterType="User" >
         update mybatis.user set name=#{name}, pwd=#{pwd} ,create_time=#{createTime}, modify_time=#{modifyTime} where id=#{id}
     </update>
     <!--    set /where -->

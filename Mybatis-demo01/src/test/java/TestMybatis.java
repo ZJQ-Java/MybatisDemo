@@ -56,7 +56,7 @@ public class TestMybatis {
     public void testUserForeachMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        List<User> userList = mapper.selectUserForeach(Arrays.asList(1, 4));
+        List<User> userList = mapper.selectUserForeach(Arrays.asList(1, 2));
         System.out.println(userList);
     }
 
@@ -102,9 +102,9 @@ public class TestMybatis {
     public void testUpdateMybatis() throws IOException {
         SqlSession sqlSession = MybatisUtil.getSession(true);
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        User user = mapper.selectUser(4);
+        User user = mapper.selectUser(2);
         System.out.println(user);
-        int i = mapper.updateUser(new User(4, "close", "update", new Date(), new Date()));
+        int i = mapper.updateUser(new User(2, "close", "update", new Date(), new Date()));
         /*
         1.不使用缓存flushCache="true"
         2.sqlSession.commit()
@@ -112,7 +112,7 @@ public class TestMybatis {
          */
 
         System.out.println(i);
-        user = sqlSession.getMapper(UserMapper.class).selectUser(4);
+        user = sqlSession.getMapper(UserMapper.class).selectUser(2);
         System.out.println(user);
     }
 }
